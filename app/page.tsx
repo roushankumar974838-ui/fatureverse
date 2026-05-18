@@ -114,15 +114,19 @@ export default function Home() {
             <Link href="/assistant" className="hover:text-white transition">
               Assistant
             </Link>
+
             <Link href="/research" className="hover:text-white transition">
               Research
             </Link>
+
             <Link href="/developer" className="hover:text-white transition">
               Developer
             </Link>
+
             <Link href="/utility" className="hover:text-white transition">
               Utility
             </Link>
+
             <Link href="/knowledge" className="hover:text-white transition">
               Knowledge
             </Link>
@@ -230,6 +234,22 @@ export default function Home() {
                 </button>
               </div>
             </div>
+
+            <div className="mt-3 flex flex-wrap justify-center gap-2 text-xs text-white/40">
+              {[
+                "Summarize arXiv 2024.18472",
+                "Build a Next.js auth flow",
+                "Recharge ₹299 prepaid",
+                "What is Sabine Hossenfelder working on?",
+              ].map((s) => (
+                <button
+                  key={s}
+                  className="px-3 py-1 rounded-full border border-white/10 hover:border-white/30 hover:text-white/80 transition"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* METRICS */}
@@ -262,6 +282,13 @@ export default function Home() {
                 Six surfaces. One mind.
               </h2>
             </div>
+
+            <Link
+              href="/dashboard"
+              className="hidden md:block text-sm text-white/60 hover:text-white"
+            >
+              View all →
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -283,10 +310,105 @@ export default function Home() {
                   <h3 className="text-xl font-semibold">{m.title}</h3>
 
                   <p className="mt-2 text-sm text-white/50">{m.desc}</p>
+
+                  <div className="mt-6 inline-flex items-center gap-2 text-xs text-white/40 group-hover:text-white transition">
+                    Enter module →
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* LIVE TRACKER */}
+      <section className="relative px-6 py-24 border-y border-white/5 bg-linear-to-b from-transparent via-violet-950/10 to-transparent">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-xs tracking-[0.3em] text-violet-300/70">
+            03 · LIVE TRACKER
+          </div>
+
+          <h2 className="mt-2 text-4xl md:text-5xl font-bold">
+            What the world's minds are doing right now.
+          </h2>
+
+          <div className="mt-10 grid md:grid-cols-3 gap-5">
+            {[
+              {
+                name: "Demis Hassabis",
+                org: "DeepMind",
+                status:
+                  "Publishing on protein–RNA folding (AlphaFold 4 hint)",
+                color: "bg-emerald-400",
+              },
+              {
+                name: "Sara Walker",
+                org: "ASU · Assembly Theory",
+                status:
+                  "New paper on origin-of-life information thresholds",
+                color: "bg-cyan-400",
+              },
+              {
+                name: "Jensen Huang",
+                org: "NVIDIA",
+                status:
+                  "GTC keynote · Rubin Ultra architecture preview",
+                color: "bg-fuchsia-400",
+              },
+            ].map((p) => (
+              <GlassCard key={p.name} className="p-6 text-left">
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`w-2 h-2 rounded-full ${p.color} animate-pulse`}
+                  />
+
+                  <div className="text-xs text-white/50 tracking-widest">
+                    LIVE
+                  </div>
+                </div>
+
+                <div className="mt-4 text-lg font-semibold">
+                  {p.name}
+                </div>
+
+                <div className="text-sm text-white/50">{p.org}</div>
+
+                <div className="mt-4 text-sm text-white/80">
+                  {p.status}
+                </div>
+              </GlassCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative px-6 py-32 text-center">
+        <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+          Step into the{" "}
+          <span className="bg-linear-to-r from-cyan-300 to-fuchsia-300 bg-clip-text text-transparent">
+            FutureVerse.
+          </span>
+        </h2>
+
+        <p className="mt-6 text-white/50 max-w-xl mx-auto">
+          Free during open beta. No credit card. Just curiosity.
+        </p>
+
+        <div className="mt-10 flex justify-center gap-4">
+          <Link
+            href="/dashboard"
+            className="px-8 py-4 rounded-full bg-white text-black font-medium hover:scale-105 transition"
+          >
+            Create Account
+          </Link>
+
+          <Link
+            href="/assistant"
+            className="px-8 py-4 rounded-full border border-white/20 hover:border-white/50 transition"
+          >
+            Try the Assistant
+          </Link>
         </div>
       </section>
 
