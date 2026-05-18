@@ -23,19 +23,39 @@ const METRICS = [
 export default function Home() {
   const [query, setQuery] = useState("");
   const heroRef = useRef<HTMLDivElement>(null);
+  const statusTexts = [
+  "QUANTUM CORE • ONLINE • v4.0.1",
+  "SYNCING GLOBAL KNOWLEDGE...",
+  "AI NODES ACTIVE · 184K",
+  "CONNECTING RESEARCH NETWORK...",
+];
 
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      if (!heroRef.current) return;
-      const { clientX, clientY } = e;
-      const x = (clientX / window.innerWidth - 0.5) * 20;
-      const y = (clientY / window.innerHeight - 0.5) * 20;
-      heroRef.current.style.setProperty("--mx", `${x}px`);
-      heroRef.current.style.setProperty("--my", `${y}px`);
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+const [statusIndex, setStatusIndex] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setStatusIndex((prev) => (prev + 1) % statusTexts.length);
+  }, 2500);
+
+  const onMove = (e: MouseEvent) => {
+    if (!heroRef.current) return;
+
+    const { clientX, clientY } = e;
+
+    const x = (clientX / window.innerWidth - 0.5) * 20;
+    const y = (clientY / window.innerHeight - 0.5) * 20;
+
+    heroRef.current.style.setProperty("--mx", `${x}px`);
+    heroRef.current.style.setProperty("--my", `${y}px`);
+  };
+
+  window.addEventListener("mousemove", onMove);
+
+  return () => {
+    clearInterval(interval);
+    window.removeEventListener("mousemove", onMove);
+  };
+}, []);
 
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-[#03050b] text-white">
@@ -70,7 +90,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs tracking-widest text-white/70 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            QUANTUM CORE · ONLINE · v4.0.1
+            {statusTexts[statusIndex]}
           </div>
 
           <h1 className="text-6xl md:text-8xl font-bold leading-[1.05] tracking-tight">
