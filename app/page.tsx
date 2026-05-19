@@ -4,6 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import QuantumBackground from "@/components/QuantumBackground";
 import GlassCard from "@/components/GlassCard";
+import OracleTerminal from "@/components/OracleTerminal";
+import TypingTerminal from "@/components/TypingTerminal";
+import SignalFeed from "@/components/SignalFeed"
+import CivilizationTimeline from "@/components/CivilizationTimeline";
+import SystemLogs from "@/components/SystemLogs";
+import StatusPanel from "@/components/StatusPanel";
+import CommandConsole from "@/components/CommandConsole";
+import LoadingScreen from "@/components/LoadingScreen";
+import MatrixRain from "@/components/MatrixRain";
 
 const MODULES = [
   {
@@ -115,9 +124,12 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-[#03050b] text-white">
+    <main className="scanlines relative min-h-screen overflow-x-hidden z-10">
+      <MatrixRain />
+      <LoadingScreen />
       <QuantumBackground />
 
+      
       {/* NAVBAR */}
       <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-black/30 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -144,6 +156,24 @@ export default function Home() {
           </button>
         </div>
       </header>
+      <section className="pt-37 px-6 space-y-8">
+        
+
+  <TypingTerminal />
+
+  <OracleTerminal />
+
+  <SignalFeed />
+
+  <CivilizationTimeline />
+
+  <SystemLogs />
+
+  <StatusPanel />
+
+  <CommandConsole />
+
+</section>
 
       {/* CONSOLE POPUP */}
       {consoleOpen && (

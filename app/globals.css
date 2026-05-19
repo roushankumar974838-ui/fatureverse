@@ -26,3 +26,85 @@ html, body { background: #03050b; }
   mix-blend-mode: screen;
   z-index: 0;
 }
+.scanlines::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+  repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,120,0.08) 0px,
+    rgba(0,255,120,0.08) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+
+  pointer-events:none;
+  opacity:0.4;
+
+  animation:scanMove 8s linear infinite;
+}
+
+@keyframes scanMove{
+  from{
+    transform:translateY(0);
+  }
+
+  to{
+    transform:translateY(10px);
+  }
+}
+
+@keyframes scan {
+  0% {
+    background-position: 0 -100vh;
+  }
+
+  100% {
+    background-position: 0 100vh;
+  }
+}
+
+.scanlines::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,120,0.03),
+    rgba(0,255,120,0.03) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+
+  animation: scan 8s linear infinite;
+
+  pointer-events: none;
+
+  z-index: 999;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+}
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.25;
+}
