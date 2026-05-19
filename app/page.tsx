@@ -57,6 +57,27 @@ const METRICS = [
   { v: "99.99%", l: "Uptime" },
 ];
 
+const TRACKER = [
+  {
+    name: "Demis Hassabis",
+    org: "DeepMind",
+    status: "Publishing on protein–RNA folding (AlphaFold 4 hint)",
+    color: "bg-emerald-400",
+  },
+  {
+    name: "Sara Walker",
+    org: "ASU · Assembly Theory",
+    status: "New paper on origin-of-life information thresholds",
+    color: "bg-cyan-400",
+  },
+  {
+    name: "Jensen Huang",
+    org: "NVIDIA",
+    status: "GTC keynote · Rubin Ultra architecture preview",
+    color: "bg-fuchsia-400",
+  },
+];
+
 export default function Home() {
   const [consoleOpen, setConsoleOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -78,12 +99,9 @@ export default function Home() {
 
     const onMove = (e: MouseEvent) => {
       if (!heroRef.current) return;
-
       const { clientX, clientY } = e;
-
       const x = (clientX / window.innerWidth - 0.5) * 20;
       const y = (clientY / window.innerHeight - 0.5) * 20;
-
       heroRef.current.style.setProperty("--mx", `${x}px`);
       heroRef.current.style.setProperty("--my", `${y}px`);
     };
@@ -111,25 +129,11 @@ export default function Home() {
           </Link>
 
           <nav className="hidden md:flex gap-8 text-sm text-white/70">
-            <Link href="/assistant" className="hover:text-white transition">
-              Assistant
-            </Link>
-
-            <Link href="/research" className="hover:text-white transition">
-              Research
-            </Link>
-
-            <Link href="/developer" className="hover:text-white transition">
-              Developer
-            </Link>
-
-            <Link href="/utility" className="hover:text-white transition">
-              Utility
-            </Link>
-
-            <Link href="/knowledge" className="hover:text-white transition">
-              Knowledge
-            </Link>
+            <Link href="/assistant" className="hover:text-white transition">Assistant</Link>
+            <Link href="/research" className="hover:text-white transition">Research</Link>
+            <Link href="/developer" className="hover:text-white transition">Developer</Link>
+            <Link href="/utility" className="hover:text-white transition">Utility</Link>
+            <Link href="/knowledge" className="hover:text-white transition">Knowledge</Link>
           </nav>
 
           <button
@@ -144,14 +148,13 @@ export default function Home() {
       {/* CONSOLE POPUP */}
       {consoleOpen && (
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-6">
-          <div className="w-full max-w-5xl h-[80vh] rounded-3xl border border-cyan-500/20 bg-black shadow-2xl overflow-hidden">
+          <div className="w-full max-w-5xl h-[80vh] rounded-3xl animate-float border border-cyan-500/20 bg-black shadow-2xl overflow-hidden">
             <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500" />
                 <div className="w-3 h-3 rounded-full bg-green-500" />
               </div>
-
               <button
                 onClick={() => setConsoleOpen(false)}
                 className="text-white/60 hover:text-white"
@@ -171,10 +174,7 @@ export default function Home() {
                 <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
                   <div className="h-full w-[85%] bg-cyan-400 animate-pulse" />
                 </div>
-
-                <p className="mt-2 text-cyan-300">
-                  SYSTEM STATUS: OPERATIONAL
-                </p>
+                <p className="mt-2 text-cyan-300">SYSTEM STATUS: OPERATIONAL _</p>
               </div>
             </div>
           </div>
@@ -211,24 +211,17 @@ export default function Home() {
           <div className="mt-12 max-w-3xl mx-auto">
             <div className="relative group">
               <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-violet-500 to-fuchsia-500 rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition" />
-
               <div className="relative flex items-center gap-3 px-6 py-5 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10">
                 <span className="text-cyan-300">▸</span>
-
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Ask anything · search papers · generate code · pay a bill..."
                   className="flex-1 bg-transparent outline-none text-base placeholder:text-white/30"
                 />
-
-                <button
-                  className="text-white/50 hover:text-white transition"
-                  title="Voice"
-                >
+                <button className="text-white/50 hover:text-white transition" title="Voice">
                   🎙
                 </button>
-
                 <button className="px-4 py-1.5 rounded-lg bg-white text-black text-sm font-medium hover:bg-white/90 transition">
                   Run
                 </button>
@@ -259,7 +252,6 @@ export default function Home() {
                 <div className="text-3xl md:text-4xl font-bold bg-linear-to-b from-white to-white/40 bg-clip-text text-transparent">
                   {m.v}
                 </div>
-
                 <div className="mt-1 text-xs tracking-widest text-white/50">
                   {m.l.toUpperCase()}
                 </div>
@@ -277,12 +269,10 @@ export default function Home() {
               <div className="text-xs tracking-[0.3em] text-cyan-300/70">
                 02 · MODULES
               </div>
-
               <h2 className="mt-2 text-4xl md:text-5xl font-bold">
                 Six surfaces. One mind.
               </h2>
             </div>
-
             <Link
               href="/dashboard"
               className="hidden md:block text-sm text-white/60 hover:text-white"
@@ -301,16 +291,10 @@ export default function Home() {
                 <div
                   className={`absolute -top-20 -right-20 w-60 h-60 rounded-full bg-gradient-radial ${m.glow} blur-3xl opacity-60 group-hover:opacity-100 transition`}
                 />
-
                 <div className="relative">
-                  <div className="text-4xl mb-6 text-white/80">
-                    {m.icon}
-                  </div>
-
+                  <div className="text-4xl mb-6 text-white/80">{m.icon}</div>
                   <h3 className="text-xl font-semibold">{m.title}</h3>
-
                   <p className="mt-2 text-sm text-white/50">{m.desc}</p>
-
                   <div className="mt-6 inline-flex items-center gap-2 text-xs text-white/40 group-hover:text-white transition">
                     Enter module →
                   </div>
@@ -327,56 +311,32 @@ export default function Home() {
           <div className="text-xs tracking-[0.3em] text-violet-300/70">
             03 · LIVE TRACKER
           </div>
-
           <h2 className="mt-2 text-4xl md:text-5xl font-bold">
             What the world's minds are doing right now.
           </h2>
 
           <div className="mt-10 grid md:grid-cols-3 gap-5">
-            {[
-              {
-                name: "Demis Hassabis",
-                org: "DeepMind",
-                status:
-                  "Publishing on protein–RNA folding (AlphaFold 4 hint)",
-                color: "bg-emerald-400",
-              },
-              {
-                name: "Sara Walker",
-                org: "ASU · Assembly Theory",
-                status:
-                  "New paper on origin-of-life information thresholds",
-                color: "bg-cyan-400",
-              },
-              {
-                name: "Jensen Huang",
-                org: "NVIDIA",
-                status:
-                  "GTC keynote · Rubin Ultra architecture preview",
-                color: "bg-fuchsia-400",
-              },
-            ].map((p) => (
-              <GlassCard key={p.name} className="p-6 text-left">
-                <div className="flex items-center gap-3">
-                  <span
-                    className={`w-2 h-2 rounded-full ${p.color} animate-pulse`}
-                  />
-
-                  <div className="text-xs text-white/50 tracking-widest">
-                    LIVE
+            {TRACKER.map((p) => (
+              <button
+                key={p.name}
+                onClick={() =>
+                  window.open(
+                    `/research/${p.name.toLowerCase().replace(/\s+/g, "-")}`,
+                    "_blank"
+                  )
+                }
+                className="text-left"
+              >
+                <GlassCard className="p-6 hover:border-cyan-400/40 hover:scale-[1.02] transition cursor-pointer">
+                  <div className="flex items-center gap-3">
+                    <span className={`w-2 h-2 rounded-full ${p.color} animate-pulse`} />
+                    <div className="text-xs text-white/50 tracking-widest">LIVE</div>
                   </div>
-                </div>
-
-                <div className="mt-4 text-lg font-semibold">
-                  {p.name}
-                </div>
-
-                <div className="text-sm text-white/50">{p.org}</div>
-
-                <div className="mt-4 text-sm text-white/80">
-                  {p.status}
-                </div>
-              </GlassCard>
+                  <div className="mt-4 text-lg font-semibold">{p.name}</div>
+                  <div className="text-sm text-white/50">{p.org}</div>
+                  <div className="mt-4 text-sm text-white/80">{p.status}</div>
+                </GlassCard>
+              </button>
             ))}
           </div>
         </div>
@@ -390,11 +350,9 @@ export default function Home() {
             FutureVerse.
           </span>
         </h2>
-
         <p className="mt-6 text-white/50 max-w-xl mx-auto">
           Free during open beta. No credit card. Just curiosity.
         </p>
-
         <div className="mt-10 flex justify-center gap-4">
           <Link
             href="/dashboard"
@@ -402,7 +360,6 @@ export default function Home() {
           >
             Create Account
           </Link>
-
           <Link
             href="/assistant"
             className="px-8 py-4 rounded-full border border-white/20 hover:border-white/50 transition"
